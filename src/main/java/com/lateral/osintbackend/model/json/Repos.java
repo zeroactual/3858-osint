@@ -4,17 +4,13 @@ import com.google.api.client.util.Key;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class Repo {
+public class Repos {
 
     @Key
-    private long id;
-    @Key
-    private String name;
-    @Key
-    private Owner owner;
-    @Key
-    private boolean fork;
+    private List<Repo> repos;
 }
 

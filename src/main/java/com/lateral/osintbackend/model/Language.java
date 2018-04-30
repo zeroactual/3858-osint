@@ -5,8 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class User {
+public class Language {
     private String name;
-    private String location;
-    private String company;
 }

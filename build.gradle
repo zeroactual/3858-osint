@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '2.0.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -20,7 +20,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 
@@ -31,8 +31,14 @@ dependencies {
     compile("org.webjars:sockjs-client:1.0.2")
     compile("org.webjars:stomp-websocket:2.3.3")
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.18'
-	compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     compileOnly 'org.projectlombok:lombok:1.16.18'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
+    compile group: 'com.google.guava', name: 'guava', version: '25.0-jre'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.5'
+    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
+    compile group: 'com.google.http-client', name: 'google-http-client-jackson2', version: '1.23.0'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

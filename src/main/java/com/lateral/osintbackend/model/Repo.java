@@ -3,10 +3,12 @@ package com.lateral.osintbackend.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class User {
+public class Repo {
     private String name;
-    private String location;
-    private String company;
+    private List<User> contributors;
+    private List<Language> languages;
 }

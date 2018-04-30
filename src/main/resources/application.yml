@@ -1,2 +1,9 @@
 db:
-  jdbc:postgresql:[//host[:port]/][database][?property1=value1[&property2=value2]...]
+  url: 'jdbc:postgresql://localhost/postgres'
+  user: 'wes'
+  password: 'T_1*AqR2y'
+
+  select_star: >
+    SELECT * FROM languages
+server:
+  port: 9090

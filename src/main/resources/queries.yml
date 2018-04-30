@@ -1,0 +1,2 @@
+select_star : >
+  SELECT * FROM languages

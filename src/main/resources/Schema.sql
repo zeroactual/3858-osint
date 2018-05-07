@@ -178,12 +178,3 @@ create index repo_emails_email_index
 create index repo_emails_repo_index
   on repo_emails (repo)
 ;
-
-
-SELECT lang.name, l.name, COUNT(lang.*), COUNT(l.*) FROM locations l
-  INNER JOIN users u ON u.location = l.name
-  INNER JOIN repo_users u2 ON u.name = u2."user"
-  INNER JOIN repos r ON u2.repo = r.name
-  INNER JOIN repo_languages l2 ON r.name = l2.repo
-  INNER JOIN languages lang ON l2.language = lang.name
-GROUP BY lang.name, l.name, COUNT(lang.*), COUNT(l.*);

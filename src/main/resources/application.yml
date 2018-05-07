@@ -1,9 +1,9 @@
 db:
   url: 'jdbc:postgresql://localhost/postgres'
-  user: 'wes'
-  password: 'T_1*AqR2y'
 
-  select_star: >
-    SELECT * FROM languages
 server:
   port: 9090
+
+scheduled:
+  github_enabled: true
+  maps_enabled: true

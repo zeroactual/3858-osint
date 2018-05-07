@@ -108,9 +108,7 @@ public class GithubRepo {
                                 users.add(contrib);
                                 log.info("Contributor added, login: {}, location: {}, raw_location: {}, company: {}", contrib.getName(), contrib.getLocation(), contrib.getRaw_location(), contrib.getCompany());
                             }
-                        } catch (HttpResponseException ex) {
-
-                        }
+                        } catch (HttpResponseException | NullPointerException ignored) {}
 
 
                         repoDao.insertRepo(RepoToDB.map(repo));
@@ -132,7 +130,7 @@ public class GithubRepo {
 
                         next = repo.getId();
                         repoItDao.updatePosition(next);
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     }
                 }
             } catch (HttpResponseException ex) {

@@ -22,7 +22,7 @@ public class LocationDao {
 
     public List<LocationOwnerType> getTopUnmapped() {
         List<LocationOwnerType> locations = Lists.newArrayList();
-        List<Map<String, Object>> results = jdbc.queryForList("SELECT * FROM (SELECT 'user' AS type, name, raw_location FROM users WHERE location IS NULL UNION ALL SELECT 'org' AS type, name, raw_location FROM orgs WHERE location IS NULL) as u LIMIT 50", Maps.newHashMap());
+        List<Map<String, Object>> results = jdbc.queryForList("SELECT * FROM (SELECT 'user' AS type, name, raw_location FROM users WHERE location IS NULL AND (raw_location IS NOT NULL AND raw_location <> '') UNION ALL SELECT 'org' AS type, name, raw_location FROM orgs WHERE location IS NULL AND (raw_location IS NOT NULL AND raw_location <> '')) as u LIMIT 50", Maps.newHashMap());
         for (Map m : results){
             LocationOwnerType location = new LocationOwnerType();
             String value = (String) m.get("raw_location");

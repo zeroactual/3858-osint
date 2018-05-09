@@ -1,0 +1,1 @@
+INSERT INTO public.repo_it (id, last_pos) VALUES (1, 191282);

@@ -36,22 +36,20 @@ public class LocationMappingService {
 
     public boolean mapGoogleToLocation() {
         List<LocationOwnerType> raw_locations = Lists.newArrayList();
-        raw_locations.addAll(locationDao.getTopUnmapped());
+        raw_locations.addAll(locationDao.getTopUnmappedUsers());
         List<Location> locations = Lists.newArrayList();
 
 
         List<User> users = Lists.newArrayList();
         List<Org> orgs = Lists.newArrayList();
 
-        log.info("Indexing: {}", raw_locations.size());
+        log.info("Indexing Users: {}", raw_locations.size());
         for (LocationOwnerType l: raw_locations) {
             try {
                 Location location = mapsDao.getLocation(l.getCountry());
                 if (location == null) {
                     location = new Location();
                     location.setCountry("search_error");
-                } else {
-                    location.setCountry(location.getCountry());
                 }
                 locations.add(location);
                 if (l.getType().equals("user")) {
@@ -74,10 +72,29 @@ public class LocationMappingService {
             }
         }
 
+//        List<Location> unmapped_locations = Lists.newArrayList();
+//        unmapped_locations.addAll(locationDao.getTopUnmappedLocations());
+//        log.info("Indexing Locations: {}", unmapped_locations.size());
+//        for (Location l: unmapped_locations) {
+//            try {
+//                Location location = mapsDao.getLocation(l.getCountry());
+//                if (location != null) {
+//                    if (location.getAlpha_2() != null) {
+//                        locations.add(location);
+//                        log.info("Alpha_2: {}, mapped to location: {}", location.getAlpha_2(), location.getCountry());
+//                    } else log.error("Country: {} has no Alpha_2", location.getCountry());
+//                } else log.error("Country: {} is null", l.getCountry());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
         if (!locations.isEmpty()) {
             locationDao.insertLocations(locations);
-            orgDao.insertOrgs(orgs);
-            userDao.insertUsers(users);
+            if (!orgs.isEmpty())
+                orgDao.insertOrgs(orgs);
+            if (!users.isEmpty())
+                userDao.insertUsers(users);
         }
         return true;
     }

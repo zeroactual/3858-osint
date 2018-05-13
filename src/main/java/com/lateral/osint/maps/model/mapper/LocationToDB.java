@@ -14,6 +14,7 @@ public class LocationToDB {
             for (String s: ac.getTypes()) {
                 if (s.equals("country")) {
                     location.setCountry(ac.getLong_name());
+                    location.setAlpha_2(ac.getShort_name());
                     return location;
                 }
             }

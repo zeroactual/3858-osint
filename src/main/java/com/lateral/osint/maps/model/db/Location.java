@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class Location {
     private String country;
+    private String alpha_2;
 }
